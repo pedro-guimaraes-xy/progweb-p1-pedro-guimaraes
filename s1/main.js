@@ -24,3 +24,5 @@ try {
 } catch (e) {
   console.log("Erro esperado →", e.message);
 }
+
+console.log(contas[0].extrato);
