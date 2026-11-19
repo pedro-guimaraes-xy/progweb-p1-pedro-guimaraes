@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banco · Painel</title>
+  <!-- Bootstrap 5.3.8 via CDN, com SRI: o navegador confere o hash do arquivo -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-body-tertiary">
+  <header class="bg-primary text-white py-3 mb-4">
+    <div class="container">
+      <h1 class="h3 mb-0">Banco · Painel</h1>
+      <p class="mb-0 small">SPA em Vanilla JS consumindo a API da Semana 3</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Resultado das ações (criar, editar, remover) -->
+    <div id="aviso" class="alert d-none" role="status" aria-live="polite"></div>
+
+    <!-- ===================== CLIENTES ===================== -->
+    <section class="row g-4 mb-5" aria-labelledby="titulo-clientes">
+      <!-- Grid de 12 colunas: 4 para o formulário, 8 para a lista -->
+      <div class="col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-header">
+            <h2 id="titulo-clientes" class="h5 mb-0">Clientes</h2>
+          </div>
+          <form id="form-cliente" class="card-body" novalidate>
+            <div class="mb-3">
+              <label for="cli-nome" class="form-label">Nome</label>
+              <input id="cli-nome" name="nome" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label for="cli-cpf" class="form-label">CPF</label>
+              <input id="cli-cpf" name="cpf" type="text" class="form-control"
+                inputmode="numeric" placeholder="000.000.000-00" required>
+            </div>
+            <div class="mb-3">
+              <label for="cli-email" class="form-label">E-mail (opcional)</label>
+              <input id="cli-email" name="email" type="email" class="form-control">
+            </div>
+            <div class="d-flex gap-2">
+              <button id="cli-salvar" type="submit" class="btn btn-primary">Cadastrar cliente</button>
+              <button id="cli-cancelar" type="button" class="btn btn-outline-secondary d-none">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <!-- Os quatro estados da lista: só um aparece por vez -->
+            <div id="clientes-carregando" class="text-center py-4">
+              <div class="spinner-border text-primary" aria-hidden="true"></div>
+              <p class="text-muted mt-2 mb-0">Carregando clientes…</p>
+            </div>
+
+            <div id="clientes-erro" class="alert alert-danger mb-0 d-none" role="alert">
+              <p id="clientes-erro-msg" class="mb-2"></p>
+              <button id="clientes-recarregar" type="button" class="btn btn-sm btn-outline-danger">Tentar de novo</button>
+            </div>
+
+            <p id="clientes-vazio" class="text-muted text-center py-4 mb-0 d-none">
+              Nenhum cliente ainda. Cadastre o primeiro no formulário.
+            </p>
+
+            <div id="clientes-sucesso" class="table-responsive d-none">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">CPF</th>
+                  <th scope="col">E-mail</th>
+                  <th scope="col" class="text-end">Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="clientes-linhas"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTAS ===================== -->
+    <section class="row g-4 mb-5" aria-labelledby="titulo-contas">
+      <!-- Grid de 12 colunas: 4 para o formulário, 8 para a lista -->
+      <div class="col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-header">
+            <h2 id="titulo-contas" class="h5 mb-0">Contas</h2>
+          </div>
+          <form id="form-conta" class="card-body" novalidate>
+            <div class="mb-3">
+              <label for="conta-cliente" class="form-label">Cliente</label>
+              <!-- As opções vêm da lista de clientes, via JS -->
+              <select id="conta-cliente" name="clienteId" class="form-select" required>
+                <option value="">Selecione…</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="conta-tipo" class="form-label">Tipo</label>
+              <select id="conta-tipo" name="tipo" class="form-select" required>
+                <option value="corrente">Corrente</option>
+                <option value="poupanca">Poupança</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="conta-saldo" class="form-label">Saldo (R$)</label>
+              <input id="conta-saldo" name="saldo" type="number" step="0.01" class="form-control" required>
+            </div>
+            <div class="d-flex gap-2">
+              <button id="conta-salvar" type="submit" class="btn btn-primary">Abrir conta</button>
+              <button id="conta-cancelar" type="button" class="btn btn-outline-secondary d-none">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <!-- Os quatro estados da lista: só um aparece por vez -->
+            <div id="contas-carregando" class="text-center py-4">
+              <div class="spinner-border text-primary" aria-hidden="true"></div>
+              <p class="text-muted mt-2 mb-0">Carregando contas…</p>
+            </div>
+
+            <div id="contas-erro" class="alert alert-danger mb-0 d-none" role="alert">
+              <p id="contas-erro-msg" class="mb-2"></p>
+              <button id="contas-recarregar" type="button" class="btn btn-sm btn-outline-danger">Tentar de novo</button>
+            </div>
+
+            <p id="contas-vazio" class="text-muted text-center py-4 mb-0 d-none">
+              Nenhuma conta ainda. Cadastre um cliente e abra a primeira.
+            </p>
+
+            <div id="contas-sucesso" class="table-responsive d-none">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Cliente</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col" class="text-end">Saldo</th>
+                  <th scope="col" class="text-end">Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="contas-linhas"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container text-muted small pb-4">
+    Programação Web · UEPB · 2026.2 · Semana 4
+  </footer>
+
+  <!-- type="module": habilita import/export e só roda depois de o HTML virar DOM -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
