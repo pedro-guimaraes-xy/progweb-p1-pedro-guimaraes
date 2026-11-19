@@ -1,3 +1,5 @@
+import "./ui/tema.js";
+import { resumo } from "./ui/resumo.js";
 import { criarStore } from "./state/store.js";
 import { alunoService } from "./services/alunoService.js";
 import { planoService } from "./services/planoService.js";
@@ -200,6 +202,20 @@ matriculaView.aoClicarNaLista({
   remover: removerMatricula,
 });
 
+// ===================== RESUMO =====================
+function atualizarResumo() {
+  resumo.render({
+    alunos: alunos.get().alunos.length,
+    planos: planos.get().planos.length,
+    ativas: matriculas.get().matriculas.filter((m) => m.status === "ativa")
+      .length,
+  });
+}
+alunos.assinar(atualizarResumo);
+planos.assinar(atualizarResumo);
+matriculas.assinar(atualizarResumo);
+
+// ===================== INICIO =====================
 carregarAlunos();
 carregarPlanos();
 carregarMatriculas();

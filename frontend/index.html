@@ -13,12 +13,25 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body class="bg-body-tertiary">
-    <header class="bg-primary text-white py-3 mb-4">
-      <div class="container">
-        <h1 class="h3 mb-0">Academia · Painel</h1>
-        <p class="mb-0 small">
-          SPA em Vanilla JS consumindo a API do Projeto 1
-        </p>
+    <header class="topo text-white py-3 mb-4 sticky-top">
+      <div
+        class="container d-flex flex-wrap align-items-center justify-content-between gap-2"
+      >
+        <div>
+          <h1 class="h3 mb-0">🏋️ Academia · Painel</h1>
+          <p class="mb-0 small">
+            SPA em Vanilla JS consumindo a API do Projeto 1
+          </p>
+        </div>
+        <nav
+          class="d-flex flex-wrap align-items-center gap-2"
+          aria-label="Seções"
+        >
+          <a class="nav-pill" href="#secao-alunos">Alunos</a>
+          <a class="nav-pill" href="#secao-planos">Planos</a>
+          <a class="nav-pill" href="#secao-matriculas">Matrículas</a>
+          <button id="tema" type="button" class="nav-pill">🌙 Escuro</button>
+        </nav>
       </div>
     </header>
 
@@ -29,9 +42,14 @@
         role="status"
         aria-live="polite"
       ></div>
+      <div id="resumo" class="row g-3 mb-4"></div>
 
       <!-- ===================== ALUNOS ===================== -->
-      <section class="row g-4 mb-5" aria-labelledby="titulo-alunos">
+      <section
+        id="secao-alunos"
+        class="row g-4 mb-5"
+        aria-labelledby="titulo-alunos"
+      >
         <div class="col-lg-4">
           <div class="card shadow-sm">
             <div class="card-header">
@@ -126,7 +144,11 @@
       </section>
 
       <!-- ===================== PLANOS ===================== -->
-      <section class="row g-4 mb-5" aria-labelledby="titulo-planos">
+      <section
+        id="secao-planos"
+        class="row g-4 mb-5"
+        aria-labelledby="titulo-planos"
+      >
         <div class="col-lg-4">
           <div class="card shadow-sm">
             <div class="card-header">
@@ -228,7 +250,11 @@
       </section>
 
       <!-- ===================== MATRÍCULAS ===================== -->
-      <section class="row g-4 mb-5" aria-labelledby="titulo-matriculas">
+      <section
+        id="secao-matriculas"
+        class="row g-4 mb-5"
+        aria-labelledby="titulo-matriculas"
+      >
         <div class="col-lg-4">
           <div class="card shadow-sm">
             <div class="card-header">

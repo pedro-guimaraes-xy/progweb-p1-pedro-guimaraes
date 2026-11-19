@@ -43,6 +43,15 @@ function preencherSelect(select, opcoes, escolhido) {
   }
 }
 
+function celulaStatus(status) {
+  const td = document.createElement("td");
+  const badge = document.createElement("span");
+  badge.className = `badge rounded-pill text-bg-${status === "ativa" ? "success" : "secondary"}`;
+  badge.textContent = status;
+  td.append(badge);
+  return td;
+}
+
 function linha(m, editandoId) {
   const tr = document.createElement("tr");
   if (m.id === editandoId) tr.className = "editando";
@@ -58,7 +67,7 @@ function linha(m, editandoId) {
     celula(nomeDoAluno.get(m.alunoId) ?? `aluno #${m.alunoId} (removido)`),
     celula(nomeDoPlano.get(m.planoId) ?? `plano #${m.planoId}`),
     celula(m.dataInicio),
-    celula(m.status),
+    celulaStatus(m.status),
     acoes,
   );
   return tr;
