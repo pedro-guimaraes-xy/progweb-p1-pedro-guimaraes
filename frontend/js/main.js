@@ -8,6 +8,7 @@ import { alunoView } from "./ui/alunoView.js";
 import { planoView } from "./ui/planoView.js";
 import { matriculaView } from "./ui/matriculaView.js";
 import { aviso } from "./ui/aviso.js";
+import "./ui/inicio.js";
 
 // ===================== ALUNOS =====================
 const alunos = criarStore({
