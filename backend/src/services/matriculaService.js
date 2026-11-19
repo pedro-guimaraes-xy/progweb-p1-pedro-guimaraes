@@ -28,4 +28,31 @@ export const matriculaService = {
 
     return matriculaModel.criar({ alunoId, planoId });
   },
+
+  atualizar(id, dados) {
+    const { alunoId, planoId } = dados;
+    if (!alunoId || !planoId) {
+      throw new ErroApp("alunoId e planoId são obrigatórios", 400);
+    }
+    if (!alunoModel.buscarPorId(Number(alunoId))) {
+      throw new ErroApp("Aluno não encontrado", 404);
+    }
+    if (!planoModel.buscarPorId(Number(planoId))) {
+      throw new ErroApp("Plano não encontrado", 404);
+    }
+
+    const outraAtiva = matriculaModel.buscarAtivaPorAluno(Number(alunoId));
+    if (outraAtiva && outraAtiva.id !== Number(id)) {
+      throw new ErroApp("Este aluno já possui uma matrícula ativa", 409);
+    }
+
+    const matricula = matriculaModel.atualizar(Number(id), dados);
+    if (!matricula) throw new ErroApp("Matrícula não encontrada", 404);
+    return matricula;
+  },
+
+  remover(id) {
+    const removida = matriculaModel.remover(Number(id));
+    if (!removida) throw new ErroApp("Matrícula não encontrada", 404);
+  },
 };

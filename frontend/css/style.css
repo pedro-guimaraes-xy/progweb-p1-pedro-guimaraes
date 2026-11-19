@@ -1,0 +1,138 @@
+tr.editando > td {
+  background-color: var(--bs-warning-bg-subtle);
+}
+.numero {
+  font-variant-numeric: tabular-nums;
+}
+
+body {
+  background: linear-gradient(
+    180deg,
+    var(--bs-tertiary-bg) 0%,
+    var(--bs-body-bg) 380px
+  );
+  min-height: 100vh;
+}
+
+.topo {
+  background: linear-gradient(135deg, #4f46e5 0%, #0d6efd 60%, #0dcaf0 100%);
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+  z-index: 1030;
+}
+.topo h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.nav-pill {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border: 0;
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-pill:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+section[id^="secao-"] {
+  scroll-margin-top: 110px;
+}
+
+.resumo-card {
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  color: #fff;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.15);
+  transition: transform 0.2s;
+}
+.resumo-card:hover {
+  transform: translateY(-3px);
+}
+.resumo-card .emoji {
+  font-size: 1.8rem;
+}
+.resumo-card .valor {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.resumo-card .rotulo {
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+.resumo-alunos {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+}
+.resumo-planos {
+  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+}
+.resumo-ativas {
+  background: linear-gradient(135deg, #10b981, #22c55e);
+}
+
+.card {
+  border: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.08) !important;
+  transition: box-shadow 0.2s ease;
+}
+.card:hover {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14) !important;
+}
+.card-header {
+  background: var(--bs-body-bg);
+  border-bottom: 3px solid #4f46e5;
+  font-weight: 600;
+}
+
+.form-control,
+.form-select,
+.btn {
+  border-radius: 0.6rem;
+}
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(79, 70, 229, 0.2);
+  border-color: #4f46e5;
+}
+.btn {
+  font-weight: 500;
+}
+.btn-primary {
+  background: #4f46e5;
+  border-color: #4f46e5;
+}
+.btn-primary:hover {
+  background: #4338ca;
+  border-color: #4338ca;
+}
+
+.table thead th {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bs-secondary-color);
+  border-bottom-width: 2px;
+}
+
+[id$="-vazio"]::before {
+  content: "📭";
+  display: block;
+  font-size: 2.8rem;
+  margin-bottom: 0.25rem;
+}
+
+#aviso {
+  border: 0;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+}

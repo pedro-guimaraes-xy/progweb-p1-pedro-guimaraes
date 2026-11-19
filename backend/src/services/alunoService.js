@@ -18,4 +18,18 @@ export const alunoService = {
     }
     return alunoModel.criar(dados);
   },
+
+  atualizar(id, dados) {
+    if (!dados.nome || !dados.email) {
+      throw new ErroApp("Nome e e-mail são obrigatórios", 400);
+    }
+    const aluno = alunoModel.atualizar(Number(id), dados);
+    if (!aluno) throw new ErroApp("Aluno não encontrado", 404);
+    return aluno;
+  },
+
+  remover(id) {
+    const removido = alunoModel.remover(Number(id));
+    if (!removido) throw new ErroApp("Aluno não encontrado", 404);
+  },
 };

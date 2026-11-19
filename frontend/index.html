@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Academia · Painel</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-body-tertiary">
+    <header class="topo text-white py-3 mb-4 sticky-top">
+      <div
+        class="container d-flex flex-wrap align-items-center justify-content-between gap-2"
+      >
+        <div>
+          <h1 class="h3 mb-0">🏋️ Academia · Painel</h1>
+          <p class="mb-0 small">
+            SPA em Vanilla JS consumindo a API do Projeto 1
+          </p>
+        </div>
+        <nav
+          class="d-flex flex-wrap align-items-center gap-2"
+          aria-label="Seções"
+        >
+          <a class="nav-pill" href="#secao-alunos">Alunos</a>
+          <a class="nav-pill" href="#secao-planos">Planos</a>
+          <a class="nav-pill" href="#secao-matriculas">Matrículas</a>
+          <button id="tema" type="button" class="nav-pill">🌙 Escuro</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <div
+        id="aviso"
+        class="alert d-none"
+        role="status"
+        aria-live="polite"
+      ></div>
+      <div id="resumo" class="row g-3 mb-4"></div>
+
+      <!-- ===================== ALUNOS ===================== -->
+      <section
+        id="secao-alunos"
+        class="row g-4 mb-5"
+        aria-labelledby="titulo-alunos"
+      >
+        <div class="col-lg-4">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h2 id="titulo-alunos" class="h5 mb-0">Alunos</h2>
+            </div>
+            <form id="form-aluno" class="card-body" novalidate>
+              <div class="mb-3">
+                <label for="aluno-nome" class="form-label">Nome</label>
+                <input
+                  id="aluno-nome"
+                  name="nome"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="aluno-email" class="form-label">E-mail</label>
+                <input
+                  id="aluno-email"
+                  name="email"
+                  type="email"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="d-flex gap-2">
+                <button id="aluno-salvar" type="submit" class="btn btn-primary">
+                  Cadastrar aluno
+                </button>
+                <button
+                  id="aluno-cancelar"
+                  type="button"
+                  class="btn btn-outline-secondary d-none"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div id="alunos-carregando" class="text-center py-4">
+                <div
+                  class="spinner-border text-primary"
+                  aria-hidden="true"
+                ></div>
+                <p class="text-muted mt-2 mb-0">Carregando alunos…</p>
+              </div>
+
+              <div
+                id="alunos-erro"
+                class="alert alert-danger mb-0 d-none"
+                role="alert"
+              >
+                <p id="alunos-erro-msg" class="mb-2"></p>
+                <button
+                  id="alunos-recarregar"
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                >
+                  Tentar de novo
+                </button>
+              </div>
+
+              <p
+                id="alunos-vazio"
+                class="text-muted text-center py-4 mb-0 d-none"
+              >
+                Nenhum aluno ainda. Cadastre o primeiro no formulário.
+              </p>
+
+              <div id="alunos-sucesso" class="table-responsive d-none">
+                <table class="table table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col">E-mail</th>
+                      <th scope="col" class="text-end">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody id="alunos-linhas"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== PLANOS ===================== -->
+      <section
+        id="secao-planos"
+        class="row g-4 mb-5"
+        aria-labelledby="titulo-planos"
+      >
+        <div class="col-lg-4">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h2 id="titulo-planos" class="h5 mb-0">Planos</h2>
+            </div>
+            <form id="form-plano" class="card-body" novalidate>
+              <div class="mb-3">
+                <label for="plano-nome" class="form-label">Nome</label>
+                <input
+                  id="plano-nome"
+                  name="nome"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="plano-valor" class="form-label"
+                  >Valor mensal (R$)</label
+                >
+                <input
+                  id="plano-valor"
+                  name="valorMensal"
+                  type="number"
+                  step="0.01"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="plano-duracao" class="form-label"
+                  >Duração (meses)</label
+                >
+                <input
+                  id="plano-duracao"
+                  name="duracaoMeses"
+                  type="number"
+                  step="1"
+                  class="form-control"
+                  required
+                />
+              </div>
+              <button id="plano-salvar" type="submit" class="btn btn-primary">
+                Cadastrar plano
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div id="planos-carregando" class="text-center py-4">
+                <div
+                  class="spinner-border text-primary"
+                  aria-hidden="true"
+                ></div>
+                <p class="text-muted mt-2 mb-0">Carregando planos…</p>
+              </div>
+
+              <div
+                id="planos-erro"
+                class="alert alert-danger mb-0 d-none"
+                role="alert"
+              >
+                <p id="planos-erro-msg" class="mb-2"></p>
+                <button
+                  id="planos-recarregar"
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                >
+                  Tentar de novo
+                </button>
+              </div>
+
+              <p
+                id="planos-vazio"
+                class="text-muted text-center py-4 mb-0 d-none"
+              >
+                Nenhum plano ainda. Cadastre o primeiro no formulário.
+              </p>
+
+              <div id="planos-sucesso" class="table-responsive d-none">
+                <table class="table table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Nome</th>
+                      <th scope="col" class="text-end">Valor mensal</th>
+                      <th scope="col" class="text-end">Duração</th>
+                    </tr>
+                  </thead>
+                  <tbody id="planos-linhas"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== MATRÍCULAS ===================== -->
+      <section
+        id="secao-matriculas"
+        class="row g-4 mb-5"
+        aria-labelledby="titulo-matriculas"
+      >
+        <div class="col-lg-4">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h2 id="titulo-matriculas" class="h5 mb-0">Matrículas</h2>
+            </div>
+            <form id="form-matricula" class="card-body" novalidate>
+              <div class="mb-3">
+                <label for="mat-aluno" class="form-label">Aluno</label>
+                <select
+                  id="mat-aluno"
+                  name="alunoId"
+                  class="form-select"
+                  required
+                >
+                  <option value="">Selecione…</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="mat-plano" class="form-label">Plano</label>
+                <select
+                  id="mat-plano"
+                  name="planoId"
+                  class="form-select"
+                  required
+                >
+                  <option value="">Selecione…</option>
+                </select>
+              </div>
+              <div class="d-flex gap-2">
+                <button id="mat-salvar" type="submit" class="btn btn-primary">
+                  Matricular
+                </button>
+                <button
+                  id="mat-cancelar"
+                  type="button"
+                  class="btn btn-outline-secondary d-none"
+                >
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div id="matriculas-carregando" class="text-center py-4">
+                <div
+                  class="spinner-border text-primary"
+                  aria-hidden="true"
+                ></div>
+                <p class="text-muted mt-2 mb-0">Carregando matrículas…</p>
+              </div>
+
+              <div
+                id="matriculas-erro"
+                class="alert alert-danger mb-0 d-none"
+                role="alert"
+              >
+                <p id="matriculas-erro-msg" class="mb-2"></p>
+                <button
+                  id="matriculas-recarregar"
+                  type="button"
+                  class="btn btn-sm btn-outline-danger"
+                >
+                  Tentar de novo
+                </button>
+              </div>
+
+              <p
+                id="matriculas-vazio"
+                class="text-muted text-center py-4 mb-0 d-none"
+              >
+                Nenhuma matrícula ainda. Cadastre um aluno e um plano e
+                matricule.
+              </p>
+
+              <div id="matriculas-sucesso" class="table-responsive d-none">
+                <table class="table table-hover align-middle mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Aluno</th>
+                      <th scope="col">Plano</th>
+                      <th scope="col">Início</th>
+                      <th scope="col">Status</th>
+                      <th scope="col" class="text-end">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody id="matriculas-linhas"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container text-muted small pb-4">
+      Programação Web · UEPB · 2026.2 · Semana 4
+    </footer>
+
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>
