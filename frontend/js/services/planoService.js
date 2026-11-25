@@ -24,4 +24,10 @@ export const planoService = {
   async criar(dados) {
     return api.post("/planos", preparar(dados));
   },
+  atualizar(id, dados) {
+    return api.put(`/planos/${id}`, preparar(dados));
+  },
+  remover(id) {
+    return api.delete(`/planos/${id}`);
+  },
 };

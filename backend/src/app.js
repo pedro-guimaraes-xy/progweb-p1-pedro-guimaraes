@@ -16,6 +16,12 @@ app.use(cors({ origin: origens }));
 
 app.use(express.json());
 app.use(logger);
+app.get("/", (req, res) => {
+  res.json({
+    status: "ok",
+    mensagem: "API Academia Manager funcionando",
+  });
+});
 
 app.use("/alunos", alunoRoutes);
 app.use("/planos", planoRoutes);

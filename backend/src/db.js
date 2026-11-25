@@ -55,4 +55,7 @@ if (total === 0) {
   db.prepare(
     "INSERT INTO matriculas (aluno_id, plano_id, data_inicio, status) VALUES (?, ?, ?, 'ativa')",
   ).run(ana.lastInsertRowid, trimestral.lastInsertRowid, dataHoje);
+  db.prepare(
+    "INSERT INTO matriculas (aluno_id, plano_id, data_inicio, status) VALUES (?, ?, ?, 'ativa')",
+  ).run(bruno.lastInsertRowid, mensal.lastInsertRowid, dataHoje);
 }

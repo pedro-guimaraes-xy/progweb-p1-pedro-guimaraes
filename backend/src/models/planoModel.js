@@ -24,4 +24,13 @@ export const planoModel = {
       .run(dados.nome, Number(dados.valorMensal), Number(dados.duracaoMeses));
     return this.buscarPorId(Number(r.lastInsertRowid));
   },
+  atualizar(id, dados) {
+    const r = db.prepare("UPDATE planos SET nome = ?, valor_mensal = ?, duracao_meses = ? WHERE id = ?")
+      .run(dados.nome, Number(dados.valorMensal), Number(dados.duracaoMeses), id);
+    return r.changes ? this.buscarPorId(id) : null;
+  },
+
+  remover(id) {
+    return db.prepare("DELETE FROM planos WHERE id = ?").run(id).changes > 0;
+  },
 };

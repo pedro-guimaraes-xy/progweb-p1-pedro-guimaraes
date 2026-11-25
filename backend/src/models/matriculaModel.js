@@ -61,4 +61,7 @@ export const matriculaModel = {
     const r = db.prepare("DELETE FROM matriculas WHERE id = ?").run(id);
     return r.changes > 0;
   },
+  listarPorPlano(id) {
+    return db.prepare(`SELECT ${COLUNAS} FROM matriculas WHERE plano_id = ?`).all(id);
+  },
 };

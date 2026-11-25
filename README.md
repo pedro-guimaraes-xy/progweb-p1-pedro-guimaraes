@@ -43,6 +43,8 @@ npx http-server -p 5500 -c-1     # http://localhost:5500
 | GET    | /planos         | Lista os planos        | 200                |
 | GET    | /planos/:id     | Busca um plano         | 200, 404           |
 | POST   | /planos         | Cria um plano          | 201, 400, 422      |
+| PUT    | /planos/:id     | Atualiza um plano      | 200, 400, 404, 422 |
+| DELETE | /planos/:id     | Remove um plano        | 204, 404, 409      |
 | GET    | /matriculas     | Lista as matrículas    | 200                |
 | POST   | /matriculas     | Cria uma matrícula     | 201, 400, 404, 409 |
 | PUT    | /matriculas/:id | Atualiza uma matrícula | 200, 400, 404, 409 |
@@ -81,4 +83,6 @@ s1/ … s4/          exercícios das semanas
 
 ## Autor
 
-Pedro Henrique Guimarães · UEPB
+Pedro Henrique Almeida Guimarães · UEPB
+
+Regra adicional: planos vinculados a matrículas não podem ser removidos (409).

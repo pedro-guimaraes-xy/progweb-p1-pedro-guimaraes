@@ -12,4 +12,11 @@ export const planoController = {
   criar(req, res) {
     res.status(201).json(planoService.criar(req.body));
   },
+  atualizar(req, res) {
+    res.json(planoService.atualizar(req.params.id, req.body));
+  },
+  remover(req, res) {
+    planoService.remover(req.params.id);
+    res.status(204).end();
+  },
 };

@@ -84,6 +84,7 @@ const planos = criarStore({
   status: "carregando",
   planos: [],
   erro: null,
+  editandoId: null,
   salvando: false,
 });
 
@@ -100,12 +101,16 @@ async function carregarPlanos() {
 }
 
 async function salvarPlano(dados) {
+  const { editandoId } = planos.get();
   aviso.limpar();
   planos.set({ salvando: true });
   try {
-    await planoService.criar(dados);
-    aviso.sucesso("Plano cadastrado.");
+    if (editandoId) await planoService.atualizar(editandoId, dados);
+    else await planoService.criar(dados);
+
+    aviso.sucesso(editandoId ? "Plano atualizado." : "Plano cadastrado.");
     planoView.limparForm();
+    planos.set({ editandoId: null });
     await carregarPlanos();
   } catch (e) {
     aviso.erro(e.message);
@@ -114,8 +119,34 @@ async function salvarPlano(dados) {
   }
 }
 
+function editarPlano(id) {
+  const plano = planos.get().planos.find((a) => a.id === id);
+  planoView.preencherForm(plano);
+  planos.set({ editandoId: id });
+}
+
+function cancelarEdicaoPlano() {
+  planoView.limparForm();
+  planos.set({ editandoId: null });
+}
+
+async function removerPlano(id) {
+  if (!confirm(`Remover o plano #${id}?`)) return;
+  aviso.limpar();
+  try {
+    await planoService.remover(id);
+    aviso.sucesso("Plano removido.");
+    if (planos.get().editandoId === id) cancelarEdicaoPlano();
+    await carregarPlanos();
+  } catch (e) {
+    aviso.erro(e.message);
+  }
+}
+
 planoView.aoEnviar(salvarPlano);
+planoView.aoCancelar(cancelarEdicaoPlano);
 planoView.aoRecarregar(carregarPlanos);
+planoView.aoClicarNaLista({ editar: editarPlano, remover: removerPlano });
 
 // ===================== MATRÍCULAS =====================
 const matriculas = criarStore({

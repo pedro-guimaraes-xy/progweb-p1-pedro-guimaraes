@@ -203,8 +203,6 @@
                 <h2 class="h6 mb-1">Bem-vindo ao painel</h2>
                 <p class="text-secondary mb-0">
                   Use o menu ao lado para gerenciar alunos, planos e matrículas.
-                  Os números acima são calculados a partir dos dados reais da
-                  API.
                 </p>
               </div>
             </div>
@@ -314,7 +312,7 @@
               <div class="col-xl-4">
                 <div class="card">
                   <div class="card-header">
-                    <h2 class="h6 mb-0">Novo plano</h2>
+                    <h2 id="plano-titulo" class="h6 mb-0">Novo plano</h2>
                   </div>
                   <form id="form-plano" class="card-body" novalidate>
                     <div class="mb-3">
@@ -360,6 +358,13 @@
                     >
                       Cadastrar plano
                     </button>
+                    <button
+                      id="plano-cancelar"
+                      type="button"
+                      class="btn btn-outline-secondary d-none"
+                    >
+                      Cancelar
+                    </button>
                   </form>
                 </div>
               </div>
@@ -402,6 +407,7 @@
                             <th scope="col">Nome</th>
                             <th scope="col" class="text-end">Valor mensal</th>
                             <th scope="col" class="text-end">Duração</th>
+                            <th scope="col" class="text-end">Ações</th>
                           </tr>
                         </thead>
                         <tbody id="planos-linhas"></tbody>
