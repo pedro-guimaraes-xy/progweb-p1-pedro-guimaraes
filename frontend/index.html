@@ -12,7 +12,7 @@
     />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="bg-body-tertiary">
+  <body>
     <!-- ===================== TELA INICIAL ===================== -->
     <section id="inicio" class="hero">
       <div class="container py-5">
@@ -21,7 +21,7 @@
             <span class="badge rounded-pill text-bg-light mb-3"
               >Projeto 1 · Programação Web · UEPB</span
             >
-            <h1 class="display-3 fw-bold mb-3">🏋️ Academia<br />Manager</h1>
+            <h1 class="display-3 fw-bold mb-3">Academia<br />Manager</h1>
             <p class="lead mb-4">
               Cadastre alunos, monte planos e controle as matrículas da sua
               academia em um painel simples, rápido e organizado.
@@ -30,13 +30,10 @@
               <button
                 type="button"
                 class="btn btn-light btn-lg px-4"
-                data-ir="painel"
+                data-ir="app"
               >
-                Entrar no painel →
+                Entrar no sistema →
               </button>
-              <a class="btn btn-outline-light btn-lg px-4" href="#como-funciona"
-                >Como funciona</a
-              >
             </div>
             <div class="d-flex flex-wrap gap-2">
               <span class="tech-pill">JavaScript</span>
@@ -52,439 +49,479 @@
                 <button
                   type="button"
                   class="feature-card w-100 text-start"
-                  data-ir="painel"
-                  data-secao="secao-alunos"
+                  data-ir="app"
+                  data-pagina="alunos"
                 >
                   <span class="emoji">🧑‍🤝‍🧑</span>
-                  <span>
-                    <strong class="d-block">Alunos</strong>
-                    <small>Cadastre, edite e remova alunos.</small>
-                  </span>
+                  <span
+                    ><strong class="d-block">Alunos</strong
+                    ><small>Cadastre, edite e remova alunos.</small></span
+                  >
                 </button>
               </div>
               <div class="col-12">
                 <button
                   type="button"
                   class="feature-card w-100 text-start"
-                  data-ir="painel"
-                  data-secao="secao-planos"
+                  data-ir="app"
+                  data-pagina="planos"
                 >
                   <span class="emoji">🏷️</span>
-                  <span>
-                    <strong class="d-block">Planos</strong>
-                    <small>Defina valor mensal e duração.</small>
-                  </span>
+                  <span
+                    ><strong class="d-block">Planos</strong
+                    ><small>Defina valor mensal e duração.</small></span
+                  >
                 </button>
               </div>
               <div class="col-12">
                 <button
                   type="button"
                   class="feature-card w-100 text-start"
-                  data-ir="painel"
-                  data-secao="secao-matriculas"
+                  data-ir="app"
+                  data-pagina="matriculas"
                 >
                   <span class="emoji">✅</span>
-                  <span>
-                    <strong class="d-block">Matrículas</strong>
-                    <small>Vincule aluno e plano, com regras de negócio.</small>
-                  </span>
+                  <span
+                    ><strong class="d-block">Matrículas</strong
+                    ><small
+                      >Vincule aluno e plano, com regras de negócio.</small
+                    ></span
+                  >
                 </button>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div id="como-funciona" class="row g-4 pb-5 text-white">
-          <div class="col-12">
-            <h2 class="h3 fw-bold mb-0">Como funciona</h2>
-          </div>
-          <div class="col-md-4">
-            <div class="passo">
-              <span class="passo-num">1</span>
-              <h3 class="h6 fw-bold mt-2">Cadastre os alunos</h3>
-              <p class="mb-0 small">
-                Nome e e-mail. Os dados são validados no front e de novo no
-                backend.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="passo">
-              <span class="passo-num">2</span>
-              <h3 class="h6 fw-bold mt-2">Crie os planos</h3>
-              <p class="mb-0 small">
-                Mensal, trimestral, anual... com valor e duração em meses.
-              </p>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="passo">
-              <span class="passo-num">3</span>
-              <h3 class="h6 fw-bold mt-2">Matricule</h3>
-              <p class="mb-0 small">
-                Escolha aluno e plano. Um aluno não pode ter duas matrículas
-                ativas.
-              </p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===================== PAINEL ===================== -->
-    <div id="painel" class="d-none">
-      <header class="topo text-white py-3 mb-4 sticky-top">
-        <div
-          class="container d-flex flex-wrap align-items-center justify-content-between gap-2"
-        >
-          <div>
-            <h1 class="h3 mb-0">🏋️ Academia · Painel</h1>
-            <p class="mb-0 small">
-              SPA em Vanilla JS consumindo a API do Projeto 1
-            </p>
-          </div>
-          <nav
-            class="d-flex flex-wrap align-items-center gap-2"
-            aria-label="Seções"
-          >
-            <button type="button" class="nav-pill" data-ir="inicio">
-              🏠 Início
-            </button>
-            <a class="nav-pill" href="#secao-alunos">Alunos</a>
-            <a class="nav-pill" href="#secao-planos">Planos</a>
-            <a class="nav-pill" href="#secao-matriculas">Matrículas</a>
-            <button id="tema" type="button" class="nav-pill">🌙 Escuro</button>
-          </nav>
+    <!-- ===================== SISTEMA ===================== -->
+    <div id="app" class="app-shell d-none">
+      <aside id="sidebar" class="sidebar" aria-label="Menu principal">
+        <div class="sidebar-marca">
+          <span class="marca-logo">A</span>
+          <span class="rot">Academia</span>
         </div>
-      </header>
 
-      <main class="container">
-        <div
-          id="aviso"
-          class="alert d-none"
-          role="status"
-          aria-live="polite"
-        ></div>
-        <div id="resumo" class="row g-3 mb-4"></div>
+        <nav class="sidebar-nav">
+          <p class="sidebar-grupo rot">Geral</p>
+          <button type="button" class="nav-item ativo" data-pagina="dashboard">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 12l9-9 9 9M5 10v10h5v-6h4v6h5V10" />
+            </svg>
+            <span class="rot">Dashboard</span>
+          </button>
 
-        <!-- ===================== ALUNOS ===================== -->
-        <section
-          id="secao-alunos"
-          class="row g-4 mb-5"
-          aria-labelledby="titulo-alunos"
-        >
-          <div class="col-lg-4">
-            <div class="card shadow-sm">
-              <div class="card-header">
-                <h2 id="titulo-alunos" class="h5 mb-0">Alunos</h2>
-              </div>
-              <form id="form-aluno" class="card-body" novalidate>
-                <div class="mb-3">
-                  <label for="aluno-nome" class="form-label">Nome</label>
-                  <input
-                    id="aluno-nome"
-                    name="nome"
-                    type="text"
-                    class="form-control"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="aluno-email" class="form-label">E-mail</label>
-                  <input
-                    id="aluno-email"
-                    name="email"
-                    type="email"
-                    class="form-control"
-                    required
-                  />
-                </div>
-                <div class="d-flex gap-2">
-                  <button
-                    id="aluno-salvar"
-                    type="submit"
-                    class="btn btn-primary"
-                  >
-                    Cadastrar aluno
-                  </button>
-                  <button
-                    id="aluno-cancelar"
-                    type="button"
-                    class="btn btn-outline-secondary d-none"
-                  >
-                    Cancelar
-                  </button>
-                </div>
-              </form>
-            </div>
+          <p class="sidebar-grupo rot">Gestão</p>
+          <button type="button" class="nav-item" data-pagina="alunos">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"
+              />
+            </svg>
+            <span class="rot">Alunos</span>
+          </button>
+          <button type="button" class="nav-item" data-pagina="planos">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8zM7 7h.01"
+              />
+            </svg>
+            <span class="rot">Planos</span>
+          </button>
+          <button type="button" class="nav-item" data-pagina="matriculas">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9 11l3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+              />
+            </svg>
+            <span class="rot">Matrículas</span>
+          </button>
+        </nav>
+
+        <div class="sidebar-rodape">
+          <button type="button" class="nav-item" data-ir="inicio">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+            <span class="rot">Apresentação</span>
+          </button>
+          <button
+            id="recolher"
+            type="button"
+            class="nav-item d-none d-lg-flex"
+            aria-label="Recolher menu"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M11 17l-5-5 5-5M18 17l-5-5 5-5" />
+            </svg>
+            <span class="rot">Recolher</span>
+          </button>
+        </div>
+      </aside>
+
+      <div id="overlay" class="overlay"></div>
+
+      <div class="app-main">
+        <header class="topbar">
+          <button
+            id="abrir-menu"
+            type="button"
+            class="btn-icone d-lg-none"
+            aria-label="Abrir menu"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 6h18M3 12h18M3 18h18" />
+            </svg>
+          </button>
+          <h1 id="titulo-pagina" class="topbar-titulo">Dashboard</h1>
+          <div class="ms-auto d-flex align-items-center gap-2">
+            <button
+              id="tema"
+              type="button"
+              class="btn btn-sm btn-outline-secondary"
+            >
+              🌙 Escuro
+            </button>
+            <span class="perfil" title="Administrador">AD</span>
           </div>
+        </header>
 
-          <div class="col-lg-8">
-            <div class="card shadow-sm">
+        <main class="conteudo">
+          <div
+            id="aviso"
+            class="alert d-none"
+            role="status"
+            aria-live="polite"
+          ></div>
+
+          <!-- ===== DASHBOARD ===== -->
+          <section id="pagina-dashboard" class="pagina">
+            <div id="resumo" class="row g-3 mb-4"></div>
+            <div class="card">
               <div class="card-body">
-                <div id="alunos-carregando" class="text-center py-4">
-                  <div
-                    class="spinner-border text-primary"
-                    aria-hidden="true"
-                  ></div>
-                  <p class="text-muted mt-2 mb-0">Carregando alunos…</p>
-                </div>
-
-                <div
-                  id="alunos-erro"
-                  class="alert alert-danger mb-0 d-none"
-                  role="alert"
-                >
-                  <p id="alunos-erro-msg" class="mb-2"></p>
-                  <button
-                    id="alunos-recarregar"
-                    type="button"
-                    class="btn btn-sm btn-outline-danger"
-                  >
-                    Tentar de novo
-                  </button>
-                </div>
-
-                <p
-                  id="alunos-vazio"
-                  class="text-muted text-center py-4 mb-0 d-none"
-                >
-                  Nenhum aluno ainda. Cadastre o primeiro no formulário.
+                <h2 class="h6 mb-1">Bem-vindo ao painel</h2>
+                <p class="text-secondary mb-0">
+                  Use o menu ao lado para gerenciar alunos, planos e matrículas.
+                  Os números acima são calculados a partir dos dados reais da
+                  API.
                 </p>
+              </div>
+            </div>
+          </section>
 
-                <div id="alunos-sucesso" class="table-responsive d-none">
-                  <table class="table table-hover align-middle mb-0">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col" class="text-end">Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody id="alunos-linhas"></tbody>
-                  </table>
+          <!-- ===== ALUNOS ===== -->
+          <section id="pagina-alunos" class="pagina d-none">
+            <div class="row g-4">
+              <div class="col-xl-4">
+                <div class="card">
+                  <div class="card-header">
+                    <h2 class="h6 mb-0">Novo aluno</h2>
+                  </div>
+                  <form id="form-aluno" class="card-body" novalidate>
+                    <div class="mb-3">
+                      <label for="aluno-nome" class="form-label">Nome</label>
+                      <input
+                        id="aluno-nome"
+                        name="nome"
+                        type="text"
+                        class="form-control"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="aluno-email" class="form-label">E-mail</label>
+                      <input
+                        id="aluno-email"
+                        name="email"
+                        type="email"
+                        class="form-control"
+                        required
+                      />
+                    </div>
+                    <div class="d-flex gap-2">
+                      <button
+                        id="aluno-salvar"
+                        type="submit"
+                        class="btn btn-primary"
+                      >
+                        Cadastrar aluno
+                      </button>
+                      <button
+                        id="aluno-cancelar"
+                        type="button"
+                        class="btn btn-outline-secondary d-none"
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="col-xl-8">
+                <div class="card">
+                  <div class="card-body">
+                    <div id="alunos-carregando" class="text-center py-4">
+                      <div
+                        class="spinner-border text-primary"
+                        aria-hidden="true"
+                      ></div>
+                      <p class="text-muted mt-2 mb-0">Carregando alunos…</p>
+                    </div>
+                    <div
+                      id="alunos-erro"
+                      class="alert alert-danger mb-0 d-none"
+                      role="alert"
+                    >
+                      <p id="alunos-erro-msg" class="mb-2"></p>
+                      <button
+                        id="alunos-recarregar"
+                        type="button"
+                        class="btn btn-sm btn-outline-danger"
+                      >
+                        Tentar de novo
+                      </button>
+                    </div>
+                    <p
+                      id="alunos-vazio"
+                      class="text-muted text-center py-4 mb-0 d-none"
+                    >
+                      Nenhum aluno ainda. Cadastre o primeiro no formulário.
+                    </p>
+                    <div id="alunos-sucesso" class="table-responsive d-none">
+                      <table class="table table-hover align-middle mb-0">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col" class="text-end">Ações</th>
+                          </tr>
+                        </thead>
+                        <tbody id="alunos-linhas"></tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- ===================== PLANOS ===================== -->
-        <section
-          id="secao-planos"
-          class="row g-4 mb-5"
-          aria-labelledby="titulo-planos"
-        >
-          <div class="col-lg-4">
-            <div class="card shadow-sm">
-              <div class="card-header">
-                <h2 id="titulo-planos" class="h5 mb-0">Planos</h2>
-              </div>
-              <form id="form-plano" class="card-body" novalidate>
-                <div class="mb-3">
-                  <label for="plano-nome" class="form-label">Nome</label>
-                  <input
-                    id="plano-nome"
-                    name="nome"
-                    type="text"
-                    class="form-control"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="plano-valor" class="form-label"
-                    >Valor mensal (R$)</label
-                  >
-                  <input
-                    id="plano-valor"
-                    name="valorMensal"
-                    type="number"
-                    step="0.01"
-                    class="form-control"
-                    required
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="plano-duracao" class="form-label"
-                    >Duração (meses)</label
-                  >
-                  <input
-                    id="plano-duracao"
-                    name="duracaoMeses"
-                    type="number"
-                    step="1"
-                    class="form-control"
-                    required
-                  />
-                </div>
-                <button id="plano-salvar" type="submit" class="btn btn-primary">
-                  Cadastrar plano
-                </button>
-              </form>
-            </div>
-          </div>
-
-          <div class="col-lg-8">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <div id="planos-carregando" class="text-center py-4">
-                  <div
-                    class="spinner-border text-primary"
-                    aria-hidden="true"
-                  ></div>
-                  <p class="text-muted mt-2 mb-0">Carregando planos…</p>
-                </div>
-
-                <div
-                  id="planos-erro"
-                  class="alert alert-danger mb-0 d-none"
-                  role="alert"
-                >
-                  <p id="planos-erro-msg" class="mb-2"></p>
-                  <button
-                    id="planos-recarregar"
-                    type="button"
-                    class="btn btn-sm btn-outline-danger"
-                  >
-                    Tentar de novo
-                  </button>
-                </div>
-
-                <p
-                  id="planos-vazio"
-                  class="text-muted text-center py-4 mb-0 d-none"
-                >
-                  Nenhum plano ainda. Cadastre o primeiro no formulário.
-                </p>
-
-                <div id="planos-sucesso" class="table-responsive d-none">
-                  <table class="table table-hover align-middle mb-0">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col" class="text-end">Valor mensal</th>
-                        <th scope="col" class="text-end">Duração</th>
-                      </tr>
-                    </thead>
-                    <tbody id="planos-linhas"></tbody>
-                  </table>
+          <!-- ===== PLANOS ===== -->
+          <section id="pagina-planos" class="pagina d-none">
+            <div class="row g-4">
+              <div class="col-xl-4">
+                <div class="card">
+                  <div class="card-header">
+                    <h2 class="h6 mb-0">Novo plano</h2>
+                  </div>
+                  <form id="form-plano" class="card-body" novalidate>
+                    <div class="mb-3">
+                      <label for="plano-nome" class="form-label">Nome</label>
+                      <input
+                        id="plano-nome"
+                        name="nome"
+                        type="text"
+                        class="form-control"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="plano-valor" class="form-label"
+                        >Valor mensal (R$)</label
+                      >
+                      <input
+                        id="plano-valor"
+                        name="valorMensal"
+                        type="number"
+                        step="0.01"
+                        class="form-control"
+                        required
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <label for="plano-duracao" class="form-label"
+                        >Duração (meses)</label
+                      >
+                      <input
+                        id="plano-duracao"
+                        name="duracaoMeses"
+                        type="number"
+                        step="1"
+                        class="form-control"
+                        required
+                      />
+                    </div>
+                    <button
+                      id="plano-salvar"
+                      type="submit"
+                      class="btn btn-primary"
+                    >
+                      Cadastrar plano
+                    </button>
+                  </form>
                 </div>
               </div>
-            </div>
-          </div>
-        </section>
 
-        <!-- ===================== MATRÍCULAS ===================== -->
-        <section
-          id="secao-matriculas"
-          class="row g-4 mb-5"
-          aria-labelledby="titulo-matriculas"
-        >
-          <div class="col-lg-4">
-            <div class="card shadow-sm">
-              <div class="card-header">
-                <h2 id="titulo-matriculas" class="h5 mb-0">Matrículas</h2>
-              </div>
-              <form id="form-matricula" class="card-body" novalidate>
-                <div class="mb-3">
-                  <label for="mat-aluno" class="form-label">Aluno</label>
-                  <select
-                    id="mat-aluno"
-                    name="alunoId"
-                    class="form-select"
-                    required
-                  >
-                    <option value="">Selecione…</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <label for="mat-plano" class="form-label">Plano</label>
-                  <select
-                    id="mat-plano"
-                    name="planoId"
-                    class="form-select"
-                    required
-                  >
-                    <option value="">Selecione…</option>
-                  </select>
-                </div>
-                <div class="d-flex gap-2">
-                  <button id="mat-salvar" type="submit" class="btn btn-primary">
-                    Matricular
-                  </button>
-                  <button
-                    id="mat-cancelar"
-                    type="button"
-                    class="btn btn-outline-secondary d-none"
-                  >
-                    Cancelar
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-
-          <div class="col-lg-8">
-            <div class="card shadow-sm">
-              <div class="card-body">
-                <div id="matriculas-carregando" class="text-center py-4">
-                  <div
-                    class="spinner-border text-primary"
-                    aria-hidden="true"
-                  ></div>
-                  <p class="text-muted mt-2 mb-0">Carregando matrículas…</p>
-                </div>
-
-                <div
-                  id="matriculas-erro"
-                  class="alert alert-danger mb-0 d-none"
-                  role="alert"
-                >
-                  <p id="matriculas-erro-msg" class="mb-2"></p>
-                  <button
-                    id="matriculas-recarregar"
-                    type="button"
-                    class="btn btn-sm btn-outline-danger"
-                  >
-                    Tentar de novo
-                  </button>
-                </div>
-
-                <p
-                  id="matriculas-vazio"
-                  class="text-muted text-center py-4 mb-0 d-none"
-                >
-                  Nenhuma matrícula ainda. Cadastre um aluno e um plano e
-                  matricule.
-                </p>
-
-                <div id="matriculas-sucesso" class="table-responsive d-none">
-                  <table class="table table-hover align-middle mb-0">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Aluno</th>
-                        <th scope="col">Plano</th>
-                        <th scope="col">Início</th>
-                        <th scope="col">Status</th>
-                        <th scope="col" class="text-end">Ações</th>
-                      </tr>
-                    </thead>
-                    <tbody id="matriculas-linhas"></tbody>
-                  </table>
+              <div class="col-xl-8">
+                <div class="card">
+                  <div class="card-body">
+                    <div id="planos-carregando" class="text-center py-4">
+                      <div
+                        class="spinner-border text-primary"
+                        aria-hidden="true"
+                      ></div>
+                      <p class="text-muted mt-2 mb-0">Carregando planos…</p>
+                    </div>
+                    <div
+                      id="planos-erro"
+                      class="alert alert-danger mb-0 d-none"
+                      role="alert"
+                    >
+                      <p id="planos-erro-msg" class="mb-2"></p>
+                      <button
+                        id="planos-recarregar"
+                        type="button"
+                        class="btn btn-sm btn-outline-danger"
+                      >
+                        Tentar de novo
+                      </button>
+                    </div>
+                    <p
+                      id="planos-vazio"
+                      class="text-muted text-center py-4 mb-0 d-none"
+                    >
+                      Nenhum plano ainda. Cadastre o primeiro no formulário.
+                    </p>
+                    <div id="planos-sucesso" class="table-responsive d-none">
+                      <table class="table table-hover align-middle mb-0">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col" class="text-end">Valor mensal</th>
+                            <th scope="col" class="text-end">Duração</th>
+                          </tr>
+                        </thead>
+                        <tbody id="planos-linhas"></tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
 
-      <footer class="container text-muted small pb-4">
-        Programação Web · UEPB · 2026.2 · Semana 4
-      </footer>
+          <!-- ===== MATRÍCULAS ===== -->
+          <section id="pagina-matriculas" class="pagina d-none">
+            <div class="row g-4">
+              <div class="col-xl-4">
+                <div class="card">
+                  <div class="card-header">
+                    <h2 class="h6 mb-0">Nova matrícula</h2>
+                  </div>
+                  <form id="form-matricula" class="card-body" novalidate>
+                    <div class="mb-3">
+                      <label for="mat-aluno" class="form-label">Aluno</label>
+                      <select
+                        id="mat-aluno"
+                        name="alunoId"
+                        class="form-select"
+                        required
+                      >
+                        <option value="">Selecione…</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="mat-plano" class="form-label">Plano</label>
+                      <select
+                        id="mat-plano"
+                        name="planoId"
+                        class="form-select"
+                        required
+                      >
+                        <option value="">Selecione…</option>
+                      </select>
+                    </div>
+                    <div class="d-flex gap-2">
+                      <button
+                        id="mat-salvar"
+                        type="submit"
+                        class="btn btn-primary"
+                      >
+                        Matricular
+                      </button>
+                      <button
+                        id="mat-cancelar"
+                        type="button"
+                        class="btn btn-outline-secondary d-none"
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <div class="col-xl-8">
+                <div class="card">
+                  <div class="card-body">
+                    <div id="matriculas-carregando" class="text-center py-4">
+                      <div
+                        class="spinner-border text-primary"
+                        aria-hidden="true"
+                      ></div>
+                      <p class="text-muted mt-2 mb-0">Carregando matrículas…</p>
+                    </div>
+                    <div
+                      id="matriculas-erro"
+                      class="alert alert-danger mb-0 d-none"
+                      role="alert"
+                    >
+                      <p id="matriculas-erro-msg" class="mb-2"></p>
+                      <button
+                        id="matriculas-recarregar"
+                        type="button"
+                        class="btn btn-sm btn-outline-danger"
+                      >
+                        Tentar de novo
+                      </button>
+                    </div>
+                    <p
+                      id="matriculas-vazio"
+                      class="text-muted text-center py-4 mb-0 d-none"
+                    >
+                      Nenhuma matrícula ainda. Cadastre um aluno e um plano e
+                      matricule.
+                    </p>
+                    <div
+                      id="matriculas-sucesso"
+                      class="table-responsive d-none"
+                    >
+                      <table class="table table-hover align-middle mb-0">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Aluno</th>
+                            <th scope="col">Plano</th>
+                            <th scope="col">Início</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" class="text-end">Ações</th>
+                          </tr>
+                        </thead>
+                        <tbody id="matriculas-linhas"></tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
     </div>
+
     <script type="module" src="js/main.js"></script>
   </body>
 </html>

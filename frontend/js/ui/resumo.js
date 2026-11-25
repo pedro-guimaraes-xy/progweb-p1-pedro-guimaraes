@@ -20,7 +20,6 @@ const ITENS = [
     classe: "resumo-ativas",
   },
 ];
-
 function card({ emoji, rotulo, classe }, valor) {
   const col = document.createElement("div");
   col.className = "col-12 col-md-4";
