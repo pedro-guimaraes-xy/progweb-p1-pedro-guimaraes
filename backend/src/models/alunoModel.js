@@ -1,29 +1,33 @@
-let alunos = [];
-let proximoId = 1;
+import { db } from "../db.js";
 
+// Mesmo contrato de antes: listarTodos, buscarPorId, criar, atualizar, remover.
+// Só o "como" mudou: o array virou tabela.
 export const alunoModel = {
   listarTodos() {
-    return alunos;
+    return db.prepare("SELECT * FROM alunos ORDER BY id").all();
   },
+
   buscarPorId(id) {
-    return alunos.find((a) => a.id === id);
+    return db.prepare("SELECT * FROM alunos WHERE id = ?").get(id) ?? null;
   },
+
   criar(dados) {
-    const novo = { id: proximoId++, nome: dados.nome, email: dados.email };
-    alunos.push(novo);
-    return novo;
+    const r = db
+      .prepare("INSERT INTO alunos (nome, email) VALUES (?, ?)")
+      .run(dados.nome, dados.email);
+    return this.buscarPorId(Number(r.lastInsertRowid));
   },
+
   atualizar(id, dados) {
-    const aluno = alunos.find((a) => a.id === id);
-    if (!aluno) return null;
-    aluno.nome = dados.nome;
-    aluno.email = dados.email;
-    return aluno;
+    const r = db
+      .prepare("UPDATE alunos SET nome = ?, email = ? WHERE id = ?")
+      .run(dados.nome, dados.email, id);
+    if (r.changes === 0) return null;
+    return this.buscarPorId(id);
   },
+
   remover(id) {
-    const indice = alunos.findIndex((a) => a.id === id);
-    if (indice === -1) return false;
-    alunos.splice(indice, 1);
-    return true;
+    const r = db.prepare("DELETE FROM alunos WHERE id = ?").run(id);
+    return r.changes > 0;
   },
 };

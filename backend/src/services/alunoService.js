@@ -1,5 +1,6 @@
 import { alunoModel } from "../models/alunoModel.js";
 import { ErroApp } from "../utils/erro.js";
+import { matriculaModel } from "../models/matriculaModel.js";
 
 export const alunoService = {
   listar() {
@@ -29,6 +30,13 @@ export const alunoService = {
   },
 
   remover(id) {
+    // Regra nova (S5): aluno com matrículas não pode ser removido
+    if (matriculaModel.listarPorAluno(Number(id)).length > 0) {
+      throw new ErroApp(
+        "Aluno possui matrículas. Remova as matrículas primeiro.",
+        409,
+      );
+    }
     const removido = alunoModel.remover(Number(id));
     if (!removido) throw new ErroApp("Aluno não encontrado", 404);
   },
