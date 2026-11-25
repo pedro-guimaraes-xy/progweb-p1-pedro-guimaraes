@@ -29,3 +29,30 @@ db.exec(`
     status      TEXT NOT NULL DEFAULT 'ativa'
   );
 `);
+
+const { total } = db.prepare("SELECT COUNT(*) AS total FROM alunos").get();
+if (total === 0) {
+  const dataHoje = new Date().toISOString().split("T")[0];
+
+  const ana = db
+    .prepare("INSERT INTO alunos (nome, email) VALUES (?, ?)")
+    .run("Ana Silva", "ana@exemplo.com");
+  const bruno = db
+    .prepare("INSERT INTO alunos (nome, email) VALUES (?, ?)")
+    .run("Bruno Costa", "bruno@exemplo.com");
+
+  const mensal = db
+    .prepare(
+      "INSERT INTO planos (nome, valor_mensal, duracao_meses) VALUES (?, ?, ?)",
+    )
+    .run("Mensal", 99.9, 1);
+  const trimestral = db
+    .prepare(
+      "INSERT INTO planos (nome, valor_mensal, duracao_meses) VALUES (?, ?, ?)",
+    )
+    .run("Trimestral", 89.9, 3);
+
+  db.prepare(
+    "INSERT INTO matriculas (aluno_id, plano_id, data_inicio, status) VALUES (?, ?, ?, 'ativa')",
+  ).run(ana.lastInsertRowid, trimestral.lastInsertRowid, dataHoje);
+}
