@@ -13,90 +13,8 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- ===================== TELA INICIAL ===================== -->
-    <section id="inicio" class="hero">
-      <div class="container py-5">
-        <div class="row align-items-center g-5 min-vh-100">
-          <div class="col-lg-7 text-white">
-            <span class="badge rounded-pill text-bg-light mb-3"
-              >Projeto 1 · Programação Web · UEPB</span
-            >
-            <h1 class="display-3 fw-bold mb-3">Academia<br />Manager</h1>
-            <p class="lead mb-4">
-              Cadastre alunos, monte planos e controle as matrículas da sua
-              academia em um painel simples, rápido e organizado.
-            </p>
-            <div class="d-flex flex-wrap gap-2 mb-4">
-              <button
-                type="button"
-                class="btn btn-light btn-lg px-4"
-                data-ir="app"
-              >
-                Entrar no sistema →
-              </button>
-            </div>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="tech-pill">JavaScript</span>
-              <span class="tech-pill">Bootstrap 5.3</span>
-              <span class="tech-pill">Node + Express</span>
-              <span class="tech-pill">API REST</span>
-            </div>
-          </div>
-
-          <div class="col-lg-5">
-            <div class="row g-3">
-              <div class="col-12">
-                <button
-                  type="button"
-                  class="feature-card w-100 text-start"
-                  data-ir="app"
-                  data-pagina="alunos"
-                >
-                  <span class="emoji">🧑‍🤝‍🧑</span>
-                  <span
-                    ><strong class="d-block">Alunos</strong
-                    ><small>Cadastre, edite e remova alunos.</small></span
-                  >
-                </button>
-              </div>
-              <div class="col-12">
-                <button
-                  type="button"
-                  class="feature-card w-100 text-start"
-                  data-ir="app"
-                  data-pagina="planos"
-                >
-                  <span class="emoji">🏷️</span>
-                  <span
-                    ><strong class="d-block">Planos</strong
-                    ><small>Defina valor mensal e duração.</small></span
-                  >
-                </button>
-              </div>
-              <div class="col-12">
-                <button
-                  type="button"
-                  class="feature-card w-100 text-start"
-                  data-ir="app"
-                  data-pagina="matriculas"
-                >
-                  <span class="emoji">✅</span>
-                  <span
-                    ><strong class="d-block">Matrículas</strong
-                    ><small
-                      >Vincule aluno e plano, com regras de negócio.</small
-                    ></span
-                  >
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ===================== SISTEMA ===================== -->
-    <div id="app" class="app-shell d-none">
+    <div id="app" class="app-shell">
       <aside id="sidebar" class="sidebar" aria-label="Menu principal">
         <div class="sidebar-marca">
           <span class="marca-logo">A</span>
@@ -140,12 +58,6 @@
         </nav>
 
         <div class="sidebar-rodape">
-          <button type="button" class="nav-item" data-ir="inicio">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M15 18l-6-6 6-6" />
-            </svg>
-            <span class="rot">Apresentação</span>
-          </button>
           <button
             id="recolher"
             type="button"
