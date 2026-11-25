@@ -6,6 +6,10 @@ export const matriculaModel = {
     return matriculas;
   },
 
+  buscarPorId(id) {
+    return matriculas.find((m) => m.id === id);
+  },
+
   buscarAtivaPorAluno(alunoId) {
     return matriculas.find(
       (m) => m.alunoId === alunoId && m.status === "ativa",
@@ -22,5 +26,20 @@ export const matriculaModel = {
     };
     matriculas.push(nova);
     return nova;
+  },
+
+  atualizar(id, dados) {
+    const matricula = matriculas.find((m) => m.id === id);
+    if (!matricula) return null;
+    matricula.alunoId = Number(dados.alunoId);
+    matricula.planoId = Number(dados.planoId);
+    return matricula;
+  },
+
+  remover(id) {
+    const indice = matriculas.findIndex((m) => m.id === id);
+    if (indice === -1) return false;
+    matriculas.splice(indice, 1);
+    return true;
   },
 };

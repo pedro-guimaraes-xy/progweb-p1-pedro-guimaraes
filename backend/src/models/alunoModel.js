@@ -13,4 +13,17 @@ export const alunoModel = {
     alunos.push(novo);
     return novo;
   },
+  atualizar(id, dados) {
+    const aluno = alunos.find((a) => a.id === id);
+    if (!aluno) return null;
+    aluno.nome = dados.nome;
+    aluno.email = dados.email;
+    return aluno;
+  },
+  remover(id) {
+    const indice = alunos.findIndex((a) => a.id === id);
+    if (indice === -1) return false;
+    alunos.splice(indice, 1);
+    return true;
+  },
 };
