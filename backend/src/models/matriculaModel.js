@@ -1,6 +1,5 @@
 import { db } from "../db.js";
 
-// No banco: snake_case. Na API: camelCase. O AS traduz aqui.
 const COLUNAS = `id, aluno_id AS alunoId, plano_id AS planoId,
   data_inicio AS dataInicio, status`;
 
@@ -62,6 +61,8 @@ export const matriculaModel = {
     return r.changes > 0;
   },
   listarPorPlano(id) {
-    return db.prepare(`SELECT ${COLUNAS} FROM matriculas WHERE plano_id = ?`).all(id);
+    return db
+      .prepare(`SELECT ${COLUNAS} FROM matriculas WHERE plano_id = ?`)
+      .all(id);
   },
 };

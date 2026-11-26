@@ -1,7 +1,5 @@
 import { db } from "../db.js";
 
-// Mesmo contrato de antes: listarTodos, buscarPorId, criar, atualizar, remover.
-// Só o "como" mudou: o array virou tabela.
 export const alunoModel = {
   listarTodos() {
     return db.prepare("SELECT * FROM alunos ORDER BY id").all();

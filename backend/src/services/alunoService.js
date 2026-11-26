@@ -30,7 +30,6 @@ export const alunoService = {
   },
 
   remover(id) {
-    // Regra nova (S5): aluno com matrículas não pode ser removido
     if (matriculaModel.listarPorAluno(Number(id)).length > 0) {
       throw new ErroApp(
         "Aluno possui matrículas. Remova as matrículas primeiro.",
