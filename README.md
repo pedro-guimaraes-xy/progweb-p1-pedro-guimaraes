@@ -6,7 +6,7 @@ Desenvolvi este sistema para o Projeto 1 da disciplina de Programação Web da U
 
 - **Aplicação:** https://progweb-p1-pedro-guimaraes-frontend.vercel.app
 - **API:** https://p1-pedro-api.onrender.com
-- **Vídeo de apresentação:** (em breve)
+- **Vídeo de apresentação:** https://youtu.be/PNv6RuPHWYE
 
 > O backend está hospedado no plano gratuito do Render. O primeiro acesso pode demorar cerca de um minuto. Como o disco não é persistente nesse plano, os dados cadastrados podem ser perdidos quando o serviço reiniciar e o banco será recriado com os dados de exemplo.
 
@@ -45,23 +45,23 @@ Acesse http://localhost:5500 no navegador.
 
 ## Rotas da API
 
-| Método | Rota            | O que faz              | Respostas          |
-| ------ | --------------- | ---------------------- | ------------------ |
-| GET    | /               | Verifica se a API está funcionando | 200 |
-| GET    | /alunos         | Lista os alunos        | 200                |
-| GET    | /alunos/:id     | Busca um aluno         | 200, 404           |
-| POST   | /alunos         | Cria um aluno          | 201, 400           |
-| PUT    | /alunos/:id     | Atualiza um aluno      | 200, 400, 404      |
-| DELETE | /alunos/:id     | Remove um aluno        | 204, 404, 409      |
-| GET    | /planos         | Lista os planos        | 200                |
-| GET    | /planos/:id     | Busca um plano         | 200, 404           |
-| POST   | /planos         | Cria um plano          | 201, 400, 422      |
-| PUT    | /planos/:id     | Atualiza um plano      | 200, 400, 404, 422 |
-| DELETE | /planos/:id     | Remove um plano        | 204, 404, 409      |
-| GET    | /matriculas     | Lista as matrículas    | 200                |
-| POST   | /matriculas     | Cria uma matrícula     | 201, 400, 404, 409 |
-| PUT    | /matriculas/:id | Atualiza uma matrícula | 200, 400, 404, 409 |
-| DELETE | /matriculas/:id | Remove uma matrícula   | 204, 404           |
+| Método | Rota            | O que faz                          | Respostas          |
+| ------ | --------------- | ---------------------------------- | ------------------ |
+| GET    | /               | Verifica se a API está funcionando | 200                |
+| GET    | /alunos         | Lista os alunos                    | 200                |
+| GET    | /alunos/:id     | Busca um aluno                     | 200, 404           |
+| POST   | /alunos         | Cria um aluno                      | 201, 400           |
+| PUT    | /alunos/:id     | Atualiza um aluno                  | 200, 400, 404      |
+| DELETE | /alunos/:id     | Remove um aluno                    | 204, 404, 409      |
+| GET    | /planos         | Lista os planos                    | 200                |
+| GET    | /planos/:id     | Busca um plano                     | 200, 404           |
+| POST   | /planos         | Cria um plano                      | 201, 400, 422      |
+| PUT    | /planos/:id     | Atualiza um plano                  | 200, 400, 404, 422 |
+| DELETE | /planos/:id     | Remove um plano                    | 204, 404, 409      |
+| GET    | /matriculas     | Lista as matrículas                | 200                |
+| POST   | /matriculas     | Cria uma matrícula                 | 201, 400, 404, 409 |
+| PUT    | /matriculas/:id | Atualiza uma matrícula             | 200, 400, 404, 409 |
+| DELETE | /matriculas/:id | Remove uma matrícula               | 204, 404           |
 
 Erros seguem o formato `{ "erro": "mensagem" }`.
 
@@ -101,4 +101,3 @@ s1/ … s4/          exercícios das semanas
 ## Autor
 
 Pedro Henrique Almeida Guimarães · UEPB
-
