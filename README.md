@@ -1,14 +1,14 @@
 # Academia Manager
 
-Sistema web para gerenciar uma academia: cadastro de alunos, planos e matrículas.
-Projeto 1 da disciplina Programação Web (UEPB, 2026.2).
+O Academia Manager é um sistema web para facilitar o gerenciamento de uma academia. Nele é possível cadastrar, consultar, editar e excluir alunos, planos e matrículas.
 
-- **Aplicação:** (em breve)
-- **API:** (em breve)
+Desenvolvi este sistema para o Projeto 1 da disciplina de Programação Web da UEPB (2026.2).
+
+- **Aplicação:** https://progweb-p1-pedro-guimaraes-frontend.vercel.app
+- **API:** https://p1-pedro-api.onrender.com
 - **Vídeo de apresentação:** (em breve)
 
-> A API ficará no plano grátis do Render: o primeiro acesso pode levar cerca de
-> um minuto, e os dados voltam aos de exemplo a cada reinício do serviço.
+> O backend está hospedado no plano gratuito do Render. O primeiro acesso pode demorar cerca de um minuto. Como o disco não é persistente nesse plano, os dados cadastrados podem ser perdidos quando o serviço reiniciar e o banco será recriado com os dados de exemplo.
 
 ## Tecnologias
 
@@ -19,22 +19,35 @@ Projeto 1 da disciplina Programação Web (UEPB, 2026.2).
 
 Pré-requisito: Node.js 22 ou superior.
 
-```bash
-# 1. API
+Abra o terminal na pasta do projeto e execute os comandos abaixo.
+
+**1. Backend (PowerShell)**
+
+```powershell
 cd backend
 npm install
-cp .env.example .env      # no PowerShell: Copy-Item .env.example .env
-npm run dev               # http://localhost:3000
-
-# 2. Frontend (em outro terminal)
-cd frontend
-npx http-server -p 5500 -c-1     # http://localhost:5500
+Copy-Item .env.example .env
+npm run dev
 ```
+
+A API estará em http://localhost:3000. No Linux ou macOS, use `cp .env.example .env` no lugar de `Copy-Item`.
+
+**2. Frontend**
+
+Abra outro terminal na raiz do projeto:
+
+```bash
+cd frontend
+npx http-server -p 5500 -c-1
+```
+
+Acesse http://localhost:5500 no navegador.
 
 ## Rotas da API
 
 | Método | Rota            | O que faz              | Respostas          |
 | ------ | --------------- | ---------------------- | ------------------ |
+| GET    | /               | Verifica se a API está funcionando | 200 |
 | GET    | /alunos         | Lista os alunos        | 200                |
 | GET    | /alunos/:id     | Busca um aluno         | 200, 404           |
 | POST   | /alunos         | Cria um aluno          | 201, 400           |
@@ -55,12 +68,15 @@ Erros seguem o formato `{ "erro": "mensagem" }`.
 ## Regras de negócio
 
 - Aluno exige nome e e-mail (400).
-- Plano exige nome, valor mensal e duração em meses (400); valor e duração devem ser maiores que zero (422).
+- Plano exige nome, valor mensal e duração em meses (400); o valor deve ser positivo e a duração deve ser um número inteiro positivo (422).
 - Matrícula exige `alunoId` e `planoId` (400), e os dois precisam existir (404).
 - Um aluno não pode ter duas matrículas ativas (409).
 - Aluno com matrículas não pode ser removido (409).
+- Plano com matrículas não pode ser removido (409).
 
-## Estrutura
+## Estrutura do projeto
+
+Separei o código em camadas para facilitar a organização e a manutenção do sistema. As regras de negócio ficam nos services e as consultas ao banco ficam nos models.
 
 ```
 backend/
@@ -73,7 +89,8 @@ backend/
     db.js          conexão, schema e dados de exemplo do SQLite
 frontend/
   js/
-    api.js         camada HTTP (fetch)
+    config.js      endereço da API
+    api.js         comunicação com a API (fetch)
     services/      regras da tela
     state/         estado da aplicação
     ui/            desenho da tela
@@ -85,4 +102,3 @@ s1/ … s4/          exercícios das semanas
 
 Pedro Henrique Almeida Guimarães · UEPB
 
-Regra adicional: planos vinculados a matrículas não podem ser removidos (409).
